@@ -2,6 +2,8 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from "cors"
 import libraryRoute from "./routes/books-route.js";
+import authorsRoute from "./routes/authors-route.js";
+import bookRoute from "./routes/books-route copy.js";
 
 
 //  create express app
@@ -15,7 +17,8 @@ app.use(express.json());
 app.use(cors());
 
 //  use routes
-app.use(libraryRoute);
+app.use(bookRoute);
+app.use(authorsRoute);
 
 
 // app listening

@@ -1,10 +1,10 @@
 import { model, Schema } from "mongoose";
 
-const libraryScheme = new Schema({
+const authorsScheme = new Schema({
     title : {
         type : String,
         required: true,
     }
 })
 
-export const LibraryModel = model('Books', libraryScheme)
+export const AuthorsModel = model('Authors', authorsScheme)

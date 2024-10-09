@@ -1,9 +1,8 @@
-import { LibraryModel } from "../models/books-modules.js";
-import libraryRoute from "../routes/books-route.js";
+import { BookModel } from "../models/book-modules.js";
 
 export const addBook =  async (req, res, next) => {
     try {
-        await LibraryModel.create(req.body);
+        await BookModel.create(req.body);
         // respond to add request
         res.status(201).json("Book added");
     } catch (error) {
@@ -14,7 +13,7 @@ export const addBook =  async (req, res, next) => {
 
 export const getBook = async (req, res, next) => {
     try {
-      const books = await LibraryModel.find()
+      const books = await BookModel.find(req.body)
         // await LibraryModel.create(req.body);
         // respond to request
         res.status(200).json(books);

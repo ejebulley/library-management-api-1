@@ -2,10 +2,10 @@
   "name": "library-management-api-1",
   "version": "1.0.0",
   "main": "index.js",
-  "type" : "module",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev" : "nodemon --env-file=.env .",
+    "dev": "nodemon --env-file=.env .",
     "start": "node ."
   },
   "keywords": [],
@@ -15,6 +15,7 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.21.0",
+    "joi": "^17.13.3",
     "mongoose": "^8.7.0"
   },
   "devDependencies": {

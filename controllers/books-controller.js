@@ -1,20 +1,25 @@
 import { LibraryModel } from "../models/books-modules.js";
-import libraryRoute from "../routes/books-route.js";
+import { addBookValidator, updateBookValidator } from "../validators/books-validators.js";
 
-export const addBook =  async (req, res, next) => {
+export const addBook = async (req, res, next) => {
     try {
-        await LibraryModel.create(req.body);
+        // validate user input using Joi
+        const { error, value } = addBookValidator.validate(req.body);
+        if (error) {
+            return res.status(422).json(error);
+        }
+        await LibraryModel.create(value);
         // respond to add request
         res.status(201).json("Book added");
     } catch (error) {
         next(error);
     }
-    
+
 };
 
 export const getBook = async (req, res, next) => {
     try {
-      const books = await LibraryModel.find()
+        const books = await LibraryModel.find()
         // await LibraryModel.create(req.body);
         // respond to request
         res.status(200).json(books);
@@ -26,10 +31,14 @@ export const getBook = async (req, res, next) => {
 export const updateBook = async (req, res, next) => {
     try {
         // validate user inputs
+        const { error, value } = updateBookValidator.validate(req.body);
+        if (error) {
+            return res.status(422).json(error);
+        }
         // write todo to database
-        // await LibraryModel.create(req.body);
+        const viewbook = await LibraryModel.create(value);
         // respond to request
-        res.status(200).json("Book was updated");
+        res.status(200).json(viewbook);
     } catch (error) {
         next(error);
     }
